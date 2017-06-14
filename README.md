@@ -32,7 +32,8 @@ as the command line usage above
 
 ```
 import ee_download
-downloaded_images = ee_download.download_images_in_collection(collection_id = "users/yourusername/path/to/image/collection",
+downloaded_images = ee_download.download_images_in_collection(
+		collection_id = "users/yourusername/path/to/image/collection",
 		output_folder = "/mnt/c/myusername/path/to/outputs",
 		max_items = 9999
 )
@@ -40,7 +41,8 @@ downloaded_images = ee_download.download_images_in_collection(collection_id = "u
 
 Alternatively, if you just want to use the single image downloading mechanism, you can run
 ```
-downloaded_images = ee_download.download_image_by_asset_path("users/yourusername/some/single/image",
+downloaded_images = ee_download.download_image_by_asset_path(
+		asset_path = "users/yourusername/some/single/image",
 		output_folder = "/mnt/c/myusername/path/to/outputs",
 )
 ```
