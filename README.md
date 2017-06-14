@@ -9,7 +9,7 @@ If you're on Windows, I recommend using Bash on Windows for this project, but wo
 The only dependency for this script, besides the Earth Engine Python API is pycurl for downloading the images. pycurl requires some system setup.
 
 ```
-sudo apt-get install libcurl-dev
+sudo apt-get install libcurl4-openssl-dev
 sudo pip install pycurl
 ```
 
