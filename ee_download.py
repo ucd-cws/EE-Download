@@ -31,6 +31,9 @@ def download_image_by_asset_path(asset_path, output_folder):
 	download_path = os.path.join(output_folder, zipfile)  # comes as a zip file with a .tfw
 	output_path = os.path.join(output_folder, output_name + ".tif")
 	
+	# check that the output path exists - create it if not
+	makedirs(output_folder)
+	
 	### Download the file
 	with open(download_path, 'wb') as f:
 		c = pycurl.Curl()
@@ -80,9 +83,6 @@ def download_images_in_collection(collection_id, output_folder, max_items=max_it
 	### Get all of the items in the collection
 	collection = ee.ImageCollection(collection_id)
 	collection_items = collection.toList(max_items).getInfo()
-	
-	# check that the output path exists - create it if not
-	makedirs(output_folder)
 	
 	downloaded_items = []
 	for item in collection_items:
