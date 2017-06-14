@@ -96,4 +96,4 @@ if __name__ == "__main__":
 	output_folder = args[1]
 	max_items = int(args[2])
 
-	download__images_in_collection(collection_id, output_folder, max_items=max_items)
+	download_images_in_collection(collection_id, output_folder, max_items=max_items)
