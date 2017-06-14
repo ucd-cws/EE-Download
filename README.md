@@ -13,6 +13,14 @@ sudo apt-get install libcurl4-openssl-dev
 sudo pip install pycurl
 ```
 
+You may also need to install PIL if it wasn't installed when you set up the Earth Engine API. [Download the latest source kit](http://www.pythonware.com/products/pil/), then do something like the following
+
+```
+tar -xzvf .\Imaging-1.1.7.tar.gz
+cd Imaging-1.1.7
+python setup.py install
+```
+
 You have to install the development package for curl before pycurl will compile. The above commands should handle installation.
 
 ## Command line usage
