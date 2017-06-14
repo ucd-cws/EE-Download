@@ -12,7 +12,7 @@ max_items = 99999
 
 ee.Initialize()
 
-def download_image_by_asset_path(asset_path, output_folder, overwrite=True):
+def download_image_by_asset_path(asset_path, output_folder):
 	"""
 		Downloads an individual image, given its asset path, and saves it to output_folder.
 		Returns a list of the downloaded image or images
@@ -96,7 +96,4 @@ if __name__ == "__main__":
 	output_folder = args[1]
 	max_items = int(args[2])
 
-	collection_id = "users/ucd-cws-ee-data/ssj-delta-cu/ssj-disalexi/eto_collection"  # for testing
-	output_folder = "/mnt/c/Users/dsx/Code/ee-download/test"
-	
 	download__images_in_collection(collection_id, output_folder, max_items=max_items)
