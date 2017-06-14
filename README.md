@@ -23,7 +23,7 @@ If you call the script on the command line, it has three simple, positional para
 3. The maximum number of images to download
 
 ```
-	python ee_download.py "users/yourusername/path/to/image/collection" "/mnt/c/myusername/path/to/outputs" 9999
+python ee_download.py "users/yourusername/path/to/image/collection" "/mnt/c/myusername/path/to/outputs" 9999
 ```
 
 ## Usage in Python
@@ -31,18 +31,18 @@ After installation, you can import the module and call the main functions - para
 as the command line usage above
 
 ```
-	import ee_download
-	downloaded_images = ee_download.download_images_in_collection(collection_id = "users/yourusername/path/to/image/collection",
-																	output_folder = "/mnt/c/myusername/path/to/outputs",
-																	max_items = 9999
-																)
+import ee_download
+downloaded_images = ee_download.download_images_in_collection(collection_id = "users/yourusername/path/to/image/collection",
+		output_folder = "/mnt/c/myusername/path/to/outputs",
+		max_items = 9999
+)
 ```
 
 Alternatively, if you just want to use the single image downloading mechanism, you can run
 ```
-	downloaded_images = ee_download.download_image_by_asset_path("users/yourusername/some/single/image",
-																	output_folder = "/mnt/c/myusername/path/to/outputs",
-																)
+downloaded_images = ee_download.download_image_by_asset_path("users/yourusername/some/single/image",
+		output_folder = "/mnt/c/myusername/path/to/outputs",
+)
 ```
 
 Each function returns the full paths to the downloaded items as a list.
