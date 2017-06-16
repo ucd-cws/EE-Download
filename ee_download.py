@@ -12,6 +12,29 @@ max_items = 99999
 
 ee.Initialize()
 
+class Curler(object):
+	def __init__(self):
+		self.headers = {}
+
+	def download(self, url, path):
+		with open(path, 'wb') as f:
+			c = pycurl.Curl()
+			c.setopt(c.URL, url)
+			c.setopt(c.WRITEDATA, f)
+			c.perform()
+			success = self.check_for_success(c)
+			c.close()
+
+			return success
+
+	def check_for_success(self, c):
+		if c.getinfo(c.HTTP_CODE) not in (200, 304):
+			return False
+		else:
+			return True
+
+
+
 def download_image_by_asset_path(asset_path, output_folder):
 	"""
 		Downloads an individual image, given its asset path, and saves it to output_folder.
@@ -29,18 +52,14 @@ def download_image_by_asset_path(asset_path, output_folder):
 	output_name = os.path.split(asset_path)[1]
 	zipfile = output_name + ".zip"
 	download_path = os.path.join(output_folder, zipfile)  # comes as a zip file with a .tfw
-	output_path = os.path.join(output_folder, output_name + ".tif")
 	
 	# check that the output path exists - create it if not
 	makedirs(output_folder)
 	
-	### Download the file
-	with open(download_path, 'wb') as f:
-		c = pycurl.Curl()
-		c.setopt(c.URL, path)
-		c.setopt(c.WRITEDATA, f)
-		c.perform()
-		c.close()
+	c = Curler()
+	success = c.download(url=path, path=download_path)
+	if not success:
+		raise RuntimeError("Unable to retrieve file at {} - please check in your browser and try again (make sure to log into EE first).".format(path))
 		
 	### Extract the Zip and delete it
 	if not is_zipfile(download_path):
@@ -89,6 +108,7 @@ def download_images_in_collection(collection_id, output_folder, max_items=max_it
 		downloaded_items += download_image_by_asset_path(item["id"], output_folder)  # extend the list with the new list that's produced - don't append
 		
 	return downloaded_items
+
 
 if __name__ == "__main__":
 	args = sys.argv[1:]
